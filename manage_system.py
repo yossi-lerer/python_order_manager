@@ -5,14 +5,19 @@ from order_manager import show_all_orders, find_order_by_id, close_order, create
 from sales_report import make_sales_report
 from display import display_list_of_dict
 from db.handles_json import add_data_to_json, get_data_from_json
+import logging
+logger = logging.getLogger(__name__)
+
 
 def main_manager():
     while True:
         show_menu()
+        logger.info("the menu shows")
         input_menu = user_input_num("Choose option")
+        logger.info(f"input for menu is {input_menu}")
         if input_menu == 1:
             display_list_of_dict(get_product())
-            print(create_order())
+            display_list_of_dict([create_order()])
         if input_menu == 2:
             display_list_of_dict(show_all_orders())
         if input_menu == 3:

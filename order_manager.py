@@ -1,9 +1,15 @@
 from db.handles_json import get_data_from_json, add_data_to_json, update_json
 from user_input import user_input_num
 from product_manager import get_product
+import logging
+logger = logging.getLogger(__name__)
 
 def generate_order_id():
     data = get_data_from_json("./db/orders.json")
+    if data == []:
+        logger.info(f"the id generate is {1}")
+        return 1
+    logger.info(f"the id generate is {data[-1]['id'] + 1}")
     return data[-1]["id"] + 1
 
 def discount_order(price):
@@ -37,6 +43,7 @@ def create_order():
                 order["items"].append({'product_id': order_id, 'quantity': order_quantity})
                 is_product_available = True
         if not is_product_available:
+            logger.info(f"product not found")
             print("product not found")
         finish_order = user_input_num("to finish order please press 0 to continue press 1")
         if finish_order == 0:
@@ -53,12 +60,14 @@ def create_order():
         return "dont create order"
 
 def show_all_orders():
+    logger.info(f"call to show all orders")
     return get_data_from_json("./db/orders.json")
 
 def find_order_by_id(order_id):
     orders = get_data_from_json("./db/orders.json")
     for order in orders:
         if order["id"] == order_id:
+            logger.info(f"find order by id {order_id}")
             return order
         
 def close_order(order_id):
@@ -66,7 +75,9 @@ def close_order(order_id):
     for order in orders:
         if order["id"] == order_id:
             if order["status"] == "CLOSED":
+                logger.info(f"close order {order_id}")
                 return "the order is already closed"
             order["status"] = "CLOSED"
             update_json("./db/orders.json", orders)
             return orders
+    return "Order does not exist"

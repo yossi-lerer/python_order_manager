@@ -28,6 +28,8 @@ def get_data_from_json(file_path):
             data = f.read()
             data = json.loads(data)
         return data
+    except FileNotFoundError:
+        return []
     except:
         print("the json file defective")
         exit()
