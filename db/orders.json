@@ -27,7 +27,7 @@
             }
         ],
         "total": 1026.0,
-        "status": "OPEN"
+        "status": "CLOSED"
     },
     {
         "id": 3,
@@ -101,6 +101,28 @@
             }
         ],
         "total": 570.0,
+        "status": "CLOSED"
+    },
+    {
+        "id": 9,
+        "items": [
+            {
+                "product_id": 5,
+                "quantity": 6
+            }
+        ],
+        "total": 180,
+        "status": "CLOSED"
+    },
+    {
+        "id": 10,
+        "items": [
+            {
+                "product_id": 4,
+                "quantity": 5
+            }
+        ],
+        "total": 900.0,
         "status": "OPEN"
     }
 ]

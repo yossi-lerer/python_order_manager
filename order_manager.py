@@ -1,4 +1,4 @@
-from db.handles_json import get_data_from_json, add_data_to_json
+from db.handles_json import get_data_from_json, add_data_to_json, update_json
 from user_input import user_input_num
 from product_manager import get_product
 
@@ -65,5 +65,8 @@ def close_order(order_id):
     orders = get_data_from_json("./db/orders.json")
     for order in orders:
         if order["id"] == order_id:
+            if order["status"] == "CLOSED":
+                return "the order is already closed"
             order["status"] = "CLOSED"
-    return orders
+            update_json("./db/orders.json", orders)
+            return orders

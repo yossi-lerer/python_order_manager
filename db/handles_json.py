@@ -16,12 +16,21 @@ def add_data_to_json(file_path, new_record: dict):
         with open(file_path, "w") as f:
             record = json.dumps(data, indent=4)
             f.write(record)
-                
-def get_data_from_json(file_path):
-    with open(file_path, "r") as f:
-        data = f.read()
-        data = json.loads(data)
-    return data
 
+def update_json(file_path, data):
+    with open(file_path, "w") as f:
+        record = json.dumps(data, indent=4)
+        f.write(record)
+
+def get_data_from_json(file_path):
+    try:
+        with open(file_path, "r") as f:
+            data = f.read()
+            data = json.loads(data)
+        return data
+    except:
+        print("the json file defective")
+        exit()
+            
 
 
