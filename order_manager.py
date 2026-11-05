@@ -1,0 +1,11 @@
+'''
+order example
+order = {
+    "id": 1,
+    "items": [{"product_id": 1, "quantity": 2},
+              {"product_id": 3, "quantity": 1}],
+    "total": 1026.0,
+    "status": "OPEN"
+}
+
+'''
