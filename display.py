@@ -1,6 +1,8 @@
 def display_list_of_dict(list_dict):
     try:
         if isinstance(list_dict, list):
+            if list_dict ==[]:
+                print("There are no orders.")
             for indexes in list_dict:
                 print("======================")
                 for i in indexes:
