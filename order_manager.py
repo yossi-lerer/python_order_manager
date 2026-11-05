@@ -35,7 +35,10 @@ def create_order():
 
     while True:
         order_id = user_input_num("to order please enter product id")
-        order_quantity = user_input_num("please enter quantity")     
+        order_quantity = user_input_num("please enter quantity")
+        if  order_quantity == 0:
+            print("An order of 0 cannot be placed.")
+            continue
         is_product_available = False       
         for product in get_product():
             if order_id == product["id"]:
