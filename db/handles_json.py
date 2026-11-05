@@ -1,8 +1,10 @@
 import json
 import os
-# "./db/demofile.json"
+import logging
+logger = logging.getLogger(__name__)
 
 def add_data_to_json(file_path, new_record: dict):
+    logger.info(f"call to the function add_data_to_json")
     if not os.path.exists(file_path):
         with open(file_path, "w") as f:
             record = json.dumps([new_record], indent=2)
@@ -18,11 +20,13 @@ def add_data_to_json(file_path, new_record: dict):
             f.write(record)
 
 def update_json(file_path, data):
+    logger.info(f"call to the function update_json")
     with open(file_path, "w") as f:
         record = json.dumps(data, indent=4)
         f.write(record)
 
 def get_data_from_json(file_path):
+    logger.info(f"call to the function get_data_from_json")
     try:
         with open(file_path, "r") as f:
             data = f.read()
@@ -31,6 +35,7 @@ def get_data_from_json(file_path):
     except FileNotFoundError:
         return []
     except:
+        logger.warning(f"the json file defective the program ended")
         print("the json file defective")
         exit()
             
